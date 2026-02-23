@@ -32,7 +32,7 @@ function Login() {
 
         console.log(token)
 
-        useNavigate('/')
+        navigate('/')
       } else {
         console.log('Login failed')
         alert('Login failed')

@@ -15,7 +15,7 @@ class Register extends React.Component {
     event.preventDefault()
     const {username, password} = this.state
     console.log(`Username: ${username}, Password: ${password}`)
-
+    const navigate = useNavigate()
     const userDetails = {username, password}
 
     const url = 'http://localhost:5000/register'
@@ -31,7 +31,7 @@ class Register extends React.Component {
     console.log(response)
     if (response.ok) {
       console.log('Registration successful')
-      useNavigate('/login')
+      navigate('/login')
     } else {
       console.log('Registration failed')
     }
