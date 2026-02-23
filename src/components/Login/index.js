@@ -20,7 +20,6 @@ function Login() {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(userDetails),
-    
     }
 
     try {
@@ -30,45 +29,52 @@ function Login() {
         const data = await response.json()
         const token = data.jwtToken || data.jwt_token || data.jwt
         Cookies.set('jwt_token', token, {expires: 30})
-        
+
         console.log(token)
-        
+
         navigate('/')
       } else {
         console.log('Login failed')
         alert('Login failed')
       }
-
-    }
-     catch (e) {
+    } catch (e) {
       console.error(e)
       alert('Network error')
     }
-
   }
 
   return (
     <div className="bg-container">
-    <div className="login-container">
-      <div className="card">
-        <form onSubmit={handleSubmit}>
-          <h1>Login</h1>
-          <div className="input-container">
-            <label htmlFor="username">Username</label>
-            <input type="text" id="username" value={username} onChange={onChangeUsername} />
-          </div>
-          <div className="input-container">
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" value={password} onChange={onChangePassword} />
-          </div>
-          <button type="submit">Login</button>
-        </form>
+      <div className="login-container">
+        <div className="card">
+          <form onSubmit={handleSubmit}>
+            <h1>Login</h1>
+            <div className="input-container">
+              <label htmlFor="username">Username</label>
+              <input
+                type="text"
+                id="username"
+                value={username}
+                onChange={onChangeUsername}
+              />
+            </div>
+            <div className="input-container">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={onChangePassword}
+              />
+            </div>
+            <button type="submit">Login</button>
+          </form>
+        </div>
+        <Link to="/register">
+          Don&apos;t have an account? Register
+          <button type="button">Sign in</button>
+        </Link>
       </div>
-      <Link to="/register">
-        Don&apos;t have an account? Register
-        <button type="button">Sign in</button>
-      </Link>
-    </div>
     </div>
   )
 }

@@ -11,26 +11,22 @@
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   margin-bottom: 8px;
-
-
 }
 
-.label-button{
+.label-button {
   margin-left: 0px;
 
-align-self: self-start;
+  align-self: self-start;
 }
-.todo-items{
+.todo-items {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 
   align-items: center;
   width: 33vw;
-
-
 }
-.textArea{
+.textArea {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -41,14 +37,10 @@ align-self: self-start;
 
 .checked {
   text-decoration: line-through;
-
-
-
 }
-.btn{
+.btn {
   align-self: center;
 }
-p{
-
+p {
   color: aquamarine;
 }
