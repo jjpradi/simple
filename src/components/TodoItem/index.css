@@ -1,0 +1,15 @@
+/* Write your CSS here */
+
+.list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+.checked{
+
+text-decoration: line-through;
+
+}
