@@ -40,13 +40,7 @@ const initialTodosList = [
   },
 ]
 
-const newList = initialTodosList.map(e => {
-  e.todo = e.title
-  e.priority = priorityList[Math.floor(Math.random() * priorityList.length)]
-  e.status = statusList[Math.floor(Math.random() * statusList.length)]
-  e.due_date = new Date().toISOString()
-  return e
-})
+
 
 // Write your code here
 class SimpleTodos extends Component {
@@ -68,7 +62,7 @@ class SimpleTodos extends Component {
     console.log(res)
     const data = await res.json()
     console.log(data)
-    this.setState(prevState => ({todoList: data}))
+    this.setState(  ({todoList: data}))
   }
 
   onSearch = event => {
@@ -186,7 +180,7 @@ class SimpleTodos extends Component {
 
           <div className="" style={{margin: '15px'}}>
             {priorityList.map(p => (
-              <button key={p} onClick={() => this.onPriorityFilter(p)}>
+              <button type="button" key={p} onClick={() => this.onPriorityFilter(p)}>
                 {p}
               </button>
             ))}
@@ -196,12 +190,12 @@ class SimpleTodos extends Component {
             style={{display: 'flex', gap: '10px', flexDirection: 'row'}}
           >
             {statusList.map(s => (
-              <button key={s} onClick={() => this.onStatusFilter(s)}>
+              <button type="button" key={s} onClick={() => this.onStatusFilter(s)}>
                 {s}
               </button>
             ))}
           </div>
-          <button style={{margin: '15px'}} onClick={this.getProduct}>
+          <button type="button"  style={{margin: '15px'}} onClick={this.getProduct}>
             Reset
           </button>
         </div>

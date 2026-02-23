@@ -1,7 +1,7 @@
 // Write your code here
 import './index.css'
 
-import {Component, useState} from 'react'
+import {Component, } from 'react'
 
 class TodoItem extends Component {
   state = {
@@ -30,13 +30,13 @@ class TodoItem extends Component {
 
   onInput = async event => {
     if (event.target.checked) {
-      this.setState(prevState => ({
+      this.setState(  ({
         isChecked: true,
       }))
     } else {
-      this.setState(prevState => ({
+      this.setState(  {
         isChecked: false,
-      }))
+      })
     }
 
     if (event.target.checked) {
@@ -90,8 +90,8 @@ class TodoItem extends Component {
   }
 
   render() {
-    const {mode, newTitle, title, isChecked} = this.state
-    const {id, todo, priority, status, due_date} = this.props.item
+    const {mode, newTitle,  isChecked} = this.state
+    const {id, priority, status} = this.props.item
 
     return (
       <li className="list">
@@ -122,6 +122,7 @@ class TodoItem extends Component {
           )}
           {mode === 'edit' ? (
             <button
+            type="button"
               className="btn"
               style={{width: '3vw'}}
               onClick={this.onEdit}
@@ -130,6 +131,7 @@ class TodoItem extends Component {
             </button>
           ) : (
             <button
+            type="button"
               className="btn"
               style={{width: '3vw'}}
               onClick={this.onSave}
@@ -138,7 +140,7 @@ class TodoItem extends Component {
             </button>
           )}
         </div>
-        <button onClick={this.onDelete}>Delete</button>
+        <button type="button" onClick={this.onDelete}>Delete</button>
       </li>
     )
   }
