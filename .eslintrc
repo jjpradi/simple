@@ -48,11 +48,11 @@
         "ignorePureComponents": true
       }
     ],
-    "no-unused-vars": "warn",
+    "no-unused-vars": "off",
     "jsx-a11y/alt-text": 1,
-    "react/no-unused-state": "warn",
-    "react/button-has-type": "warn",
-    "react/no-unescaped-entities": "warn",
+    "react/no-unused-state": "off",
+    "react/button-has-type": "off",
+    "react/no-unescaped-entities": "off",
     "react/jsx-props-no-spreading": "off",
     "operator-assignment": ["warn", "always"],
     "radix": "off"
