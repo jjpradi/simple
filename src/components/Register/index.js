@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {Link} from 'react-router-dom'
+import {Link,useNavigate} from 'react-router-dom'
 
 class Register extends React.Component {
   state = {username: '', password: ''}
@@ -31,7 +31,7 @@ class Register extends React.Component {
     console.log(response)
     if (response.ok) {
       console.log('Registration successful')
-      navigate('/login')
+      useNavigate('/login')
     } else {
       console.log('Registration failed')
     }
