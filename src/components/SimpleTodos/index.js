@@ -2,6 +2,8 @@ import {Component} from 'react'
 
 import './index.css'
 import TodoItem from '../TodoItem'
+const priorityList = ['HIGH', 'MEDIUM', 'LOW']
+const statusList = ['TO DO', 'IN PROGRESS', 'DONE'] 
 
 const initialTodosList = [
   {
@@ -38,9 +40,19 @@ const initialTodosList = [
   },
 ]
 
+const newList=initialTodosList.map(e => {
+  e.todo = e.title    
+  e.priority = priorityList[Math.floor(Math.random() * priorityList.length)]
+  e.status = statusList[Math.floor(Math.random() * statusList.length)]
+  e.due_date = new Date().toISOString()
+  return e
+})
+
 // Write your code here
 class SimpleTodos extends Component {
-  state = {todoList: initialTodosList, searchInput: ''}
+  
+  
+  state = {todoList: newList, searchInput: '',priority:'HIGH',status:'IN PROGRESS'}
 
   componentDidMount() {
     this.getProduct()
@@ -48,11 +60,13 @@ class SimpleTodos extends Component {
 
   getProduct = async () => {
     const response = await fetch(
-      'https://todoapplication-j07a.onrender.com/todos',
+      'http://localhost:5000/todos',
     )
+    
 
     const data = await response.json()
     console.log(data)
+    this.setState(prevState => ({todoList: data})             )
   }
 
   onSearch = event => {
@@ -60,6 +74,32 @@ class SimpleTodos extends Component {
       searchInput: event.target.value,
     })
   }
+onPriorityChange = value => {
+  console.log(value)
+this.setState({priority:value       })  
+
+
+
+
+}
+
+onPriorityFilter = value => {
+  const {todoList} = this.state
+  const filter = todoList.filter(e => e.priority === value)
+  console.log(filter)
+  this.setState({todoList: filter})
+} 
+onStatusFilter = value => {
+  const {todoList} = this.state
+  const filter = todoList.filter(e => e.status === value)       
+  console.log(filter)
+  this.setState({todoList: filter})
+} 
+onStatusChange = value => { 
+
+  console.log(value)
+  this.setState({status:value       })  
+} 
 
   addTodo = async () => {
     const {searchInput, todoList} = this.state
@@ -71,17 +111,19 @@ class SimpleTodos extends Component {
 
       body: JSON.stringify({
         todo: searchInput,
-        priority: 'HIGH',
-        status: 'IN PROGRESS',
-        id: 39,
+        priority: this.state.priority,
+        status: this.state.status ,
+        id: todoList.length + 1,
+        due_date: new Date().toISOString(),
+
       }),
     }
 
     const res = await fetch(
-      'https://todoapplication-j07a.onrender.com/todos',
+      'http://localhost:5000/todos',
       options,
     )
-    if (res.ok == false) {
+    if (res.ok === false) {
       console.log(res.errorMsg)
     }
     const countOfList = todoList.length
@@ -90,7 +132,7 @@ class SimpleTodos extends Component {
 
     console.log(t)
 
-    if (parseInt(t) == t) {
+    if (parseInt(t) === t) {
       console.log('space')
 
       for (let y = 0; y < t; y++) {
@@ -132,25 +174,40 @@ class SimpleTodos extends Component {
 
     const {todoList} = this.state
     return (
-      <div className="bg">
+        <div className="bg">
+        <div className='add-card'>
+           <div className="add-card">
+            <div className='new-todo'>
+            <input value={searchInput} onChange={this.onSearch} type="text" />
+<select  onChange={(event) => this.onPriorityChange(event.target.value)}> {priorityList.map(p => <option key={p}>{p}</option>)} </select>
+<select  onChange={(event) => this.onStatusChange(event.target.value)}> {statusList.map(s => <option key={s}>{s}</option>)} </select>
+
+</div>
+            <button type="button" onClick={this.addTodo}>Add</button>
+          </div>
+
+<div className=''  style={{margin:"15px"}}>
+
+{priorityList.map(p => <button key={p} onClick={() => this.onPriorityFilter(p)}>{p}</button>)}
+
+</div>
+<div className='' style={{display:"flex", gap:"10px",flexDirection:"row"}}>
+
+  {statusList.map(s => <button key={s} onClick={() => this.onStatusFilter(s)}>{s}</button>) }
+</div>
+<button  style={{margin:"15px"  }} onClick={this.getProduct}>Reset</button>
+
+          </div>
         <div className="card">
           <h1>simple Todos</h1>
 
-          <div>
-            <input value={searchInput} onChange={this.onSearch} type="text" />
+      
 
-            <button onClick={this.addTodo}>Add</button>
-          </div>
-
-          <ul className="">
+          <ul className="todo-list" style={{margin:"15px",display:"flex", gap:"10px"}}>
             {todoList.map(e => (
-              <TodoItem
-                item={e}
-                key={e.id}
-                deleteTodo={this.deleteTodo}
-                key={e.id}
-              />
+              <TodoItem item={e} key={e.id} deleteTodo={this.deleteTodo} />
             ))}
+
           </ul>
         </div>
       </div>

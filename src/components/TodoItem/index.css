@@ -3,13 +3,52 @@
 .list {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+
   align-items: center;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  margin-bottom: 8px;
+
+
 }
 
+.label-button{
+  margin-left: 0px;
 
-.checked{
+align-self: self-start;
+}
+.todo-items{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 
-text-decoration: line-through;
+  align-items: center;
+  width: 33vw;
 
+
+}
+.textArea{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  align-items: center;
+  width: 37vw;
+}
+
+.checked {
+  text-decoration: line-through;
+
+
+
+}
+.btn{
+  align-self: center;
+}
+p{
+
+  color: aquamarine;
 }

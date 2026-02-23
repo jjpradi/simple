@@ -1,7 +1,33 @@
 /* Write your CSS here */
 
 .bg {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: 100%;
+  background: linear-gradient(135deg, #f6f9ff 0%, #eaf2ff 100%);
+  padding: 24px;
+  min-width: 90vw;
   background-color: #ffc2a0;
+}
+.new-todo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around ;
+  align-items: center;
+
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.add-card{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(31, 41, 55, 0.12);
+  padding: 28px;
 }
 .card {
   background-color: #ffffff;
@@ -10,4 +36,9 @@
   justify-content: ;
   align-items: center;
 }
-
+.todo-list{
+  display: flex;
+ flex-direction: column;
+ justify-content: ;
+ align-items: center;
+}
