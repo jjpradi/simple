@@ -15,7 +15,7 @@ function Login() {
     event.preventDefault()
     const userDetails = {username, password}
     const API = process.env.REACT_APP_API_URL || 'http://localhost:5000'
-    const url = `${API}/login`
+    const url = `https://todoapplication-j07a.onrender.com/login`
     const options = {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {Link,useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 class Register extends React.Component {
   state = {username: '', password: ''}
@@ -18,7 +18,7 @@ class Register extends React.Component {
     const navigate = useNavigate()
     const userDetails = {username, password}
 
-    const url = 'http://localhost:5000/register'
+    const url = 'https://todoapplication-j07a.onrender.com/register'
     const options = {
       method: 'POST',
       headers: {

@@ -1,7 +1,7 @@
 // Write your code here
 import './index.css'
 
-import {Component, } from 'react'
+import {Component} from 'react'
 
 class TodoItem extends Component {
   state = {
@@ -30,11 +30,11 @@ class TodoItem extends Component {
 
   onInput = async event => {
     if (event.target.checked) {
-      this.setState(  ({
+      this.setState({
         isChecked: true,
-      }))
+      })
     } else {
-      this.setState(  {
+      this.setState({
         isChecked: false,
       })
     }
@@ -90,7 +90,7 @@ class TodoItem extends Component {
   }
 
   render() {
-    const {mode, newTitle,  isChecked} = this.state
+    const {mode, newTitle, isChecked} = this.state
     const {id, priority, status} = this.props.item
 
     return (
@@ -107,10 +107,12 @@ class TodoItem extends Component {
                 id={id}
                 onChange={this.onInput}
                 type="checkbox"
+                checked={isChecked}
               />
+
               <label
                 className={isChecked ? 'checked' : null}
-                style={{width: '15vw'}}
+                style={{width: '11vw'}}
                 htmlFor={id}
               >
                 {newTitle}
@@ -122,7 +124,7 @@ class TodoItem extends Component {
           )}
           {mode === 'edit' ? (
             <button
-            type="button"
+              type="button"
               className="btn"
               style={{width: '3vw'}}
               onClick={this.onEdit}
@@ -131,7 +133,7 @@ class TodoItem extends Component {
             </button>
           ) : (
             <button
-            type="button"
+              type="button"
               className="btn"
               style={{width: '3vw'}}
               onClick={this.onSave}
@@ -140,7 +142,9 @@ class TodoItem extends Component {
             </button>
           )}
         </div>
-        <button type="button" onClick={this.onDelete}>Delete</button>
+        <button type="button" onClick={this.onDelete}>
+          Delete
+        </button>
       </li>
     )
   }
