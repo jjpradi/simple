@@ -40,8 +40,6 @@ const initialTodosList = [
   },
 ]
 
-
-
 // Write your code here
 class SimpleTodos extends Component {
   state = {
@@ -62,7 +60,7 @@ class SimpleTodos extends Component {
     console.log(res)
     const data = await res.json()
     console.log(data)
-    this.setState(  ({todoList: data}))
+    this.setState({todoList: data})
   }
 
   onSearch = event => {
@@ -180,7 +178,11 @@ class SimpleTodos extends Component {
 
           <div className="" style={{margin: '15px'}}>
             {priorityList.map(p => (
-              <button type="button" key={p} onClick={() => this.onPriorityFilter(p)}>
+              <button
+                type="button"
+                key={p}
+                onClick={() => this.onPriorityFilter(p)}
+              >
                 {p}
               </button>
             ))}
@@ -190,12 +192,20 @@ class SimpleTodos extends Component {
             style={{display: 'flex', gap: '10px', flexDirection: 'row'}}
           >
             {statusList.map(s => (
-              <button type="button" key={s} onClick={() => this.onStatusFilter(s)}>
+              <button
+                type="button"
+                key={s}
+                onClick={() => this.onStatusFilter(s)}
+              >
                 {s}
               </button>
             ))}
           </div>
-          <button type="button"  style={{margin: '15px'}} onClick={this.getProduct}>
+          <button
+            type="button"
+            style={{margin: '15px'}}
+            onClick={this.getProduct}
+          >
             Reset
           </button>
         </div>

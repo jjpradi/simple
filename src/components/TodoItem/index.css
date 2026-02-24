@@ -19,7 +19,6 @@
   align-self: self-start;
 }
 .todo-items {
-
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -42,15 +41,11 @@
 .btn {
   align-self: self-start;
   margin-left: 33px;
-
 }
 p {
   color: aquamarine;
 }
-p{
-  color: #e2e8f0  ;
- margin: 23px;   
-
-  
+p {
+  color: #e2e8f0;
+  margin: 23px;
 }
-
