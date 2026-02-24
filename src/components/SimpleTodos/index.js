@@ -1,5 +1,7 @@
 import {Component} from 'react'
+import Cookies from 'js-cookie'
 
+import {useNavigate} from 'react-router-dom'
 import './index.css'
 import TodoItem from '../TodoItem'
 const priorityList = ['HIGH', 'MEDIUM', 'LOW']
@@ -143,6 +145,12 @@ class SimpleTodos extends Component {
       todoList: filter,
     })
   }
+  onLogout = () => {
+    console.log(Cookies.get('jwt_token'))
+    Cookies.remove('jwt_token')
+
+    useNavigate('/login')
+  }
 
   render() {
     const {searchInput} = this.state
@@ -211,7 +219,11 @@ class SimpleTodos extends Component {
         </div>
         <div className="card">
           <h1>simple Todos</h1>
-
+          <div style={{display: 'flex', alignSelf: 'flex-end'}}>
+            <button type="button" onClick={this.onLogout}>
+              Logout
+            </button>
+          </div>
           <ul
             className="todo-list"
             style={{margin: '15px', display: 'flex', gap: '10px'}}

@@ -11,15 +11,7 @@ function App() {
       <div className="app-container">
         <div className="card">
           <Routes>
-            <Route
-              path="/login"
-              element={
-                <ProtectedRoute>
-                  {' '}
-                  <Login />{' '}
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/login" element={<Login />} />
             <Route
               path="/register"
               element={

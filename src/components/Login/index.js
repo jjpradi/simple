@@ -30,8 +30,6 @@ function Login() {
         const token = data.jwtToken || data.jwt_token || data.jwt
         Cookies.set('jwt_token', token, {expires: 30})
 
-        console.log(token)
-
         navigate('/')
       } else {
         console.log('Login failed')

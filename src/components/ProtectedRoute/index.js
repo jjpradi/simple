@@ -7,7 +7,7 @@ const ProtectedRoute = ({children}) => {
   console.log(token)
 
   if (token === undefined || token === null || token === '') {
-    return <Navigate to="/login" replace />
+    return <Navigate to="/login" />
   } else {
     return children
   }
