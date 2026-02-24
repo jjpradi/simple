@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 
-import {useNavigate} from 'react-router-dom'
+import {Navigate, Link} from 'react-router-dom'
 import './index.css'
 import TodoItem from '../TodoItem'
 const priorityList = ['HIGH', 'MEDIUM', 'LOW']
@@ -41,7 +41,6 @@ const initialTodosList = [
     title: 'Get essentials for Sunday car wash',
   },
 ]
-
 // Write your code here
 class SimpleTodos extends Component {
   state = {
@@ -49,6 +48,7 @@ class SimpleTodos extends Component {
     searchInput: '',
     priority: 'HIGH',
     status: 'IN PROGRESS',
+    redirectToLogin: false,
   }
 
   componentDidMount() {
@@ -146,19 +146,22 @@ class SimpleTodos extends Component {
     })
   }
   onLogout = () => {
-    console.log(Cookies.get('jwt_token'))
     Cookies.remove('jwt_token')
-
-    useNavigate('/login')
+    this.setState({redirectToLogin: true})
   }
 
   render() {
+    const {listCardBg} = this.props
+    const {redirectToLogin} = this.state
+    if (redirectToLogin) {
+      return <Navigate to="/login" />
+    }
     const {searchInput} = this.state
 
     const {todoList} = this.state
     return (
-      <div className="bg">
-        <div className="add-card">
+      <div className="bg" style={{minHeight: '100vh'}}>
+        <div className="add-card  filter-card">
           <div className="add-card">
             <div className="new-todo">
               <input value={searchInput} onChange={this.onSearch} type="text" />
@@ -184,9 +187,11 @@ class SimpleTodos extends Component {
             </button>
           </div>
 
-          <div className="" style={{margin: '15px'}}>
+          <div className="filter-card" style={{margin: '15px'}}>
+            <h5>Priority:</h5>
             {priorityList.map(p => (
               <button
+                className="filter-btn"
                 type="button"
                 key={p}
                 onClick={() => this.onPriorityFilter(p)}
@@ -195,12 +200,11 @@ class SimpleTodos extends Component {
               </button>
             ))}
           </div>
-          <div
-            className=""
-            style={{display: 'flex', gap: '10px', flexDirection: 'row'}}
-          >
+          <div className="filter-card" style={{margin: '15px'}}>
+            <h5>Status:</h5>
             {statusList.map(s => (
               <button
+                className="filter-btn"
                 type="button"
                 key={s}
                 onClick={() => this.onStatusFilter(s)}
@@ -211,22 +215,62 @@ class SimpleTodos extends Component {
           </div>
           <button
             type="button"
-            style={{margin: '15px'}}
+            style={{
+              margin: '15px',
+              padding: '8px 18px',
+              background: '#e3f2fd',
+              color: '#1976d2',
+              border: 'none',
+              borderRadius: '24px',
+              fontWeight: 'bold',
+              fontSize: '1rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              boxShadow: '0 2px 6px rgba(25,118,210,0.08)',
+            }}
             onClick={this.getProduct}
           >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 4v5h5M20 20v-5h-5M5.07 19A9 9 0 0021 12.93M19 5.07A9 9 0 003 11"
+              />
+            </svg>
             Reset
           </button>
         </div>
-        <div className="card">
-          <h1>simple Todos</h1>
-          <div style={{display: 'flex', alignSelf: 'flex-end'}}>
-            <button type="button" onClick={this.onLogout}>
-              Logout
-            </button>
-          </div>
+        <div
+          className="list-card"
+          style={{
+            backgroundImage:
+              listCardBg ||
+              "url('https://www.transparenttextures.com/patterns/cubes.png'), linear-gradient(120deg, #e3f2fd 0%, #bbdefb 100%)",
+            backgroundRepeat: 'repeat',
+            backgroundSize: 'auto',
+          }}
+        >
           <ul
             className="todo-list"
-            style={{margin: '15px', display: 'flex', gap: '10px'}}
+            style={{
+              margin: '15px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '12px',
+              alignItems: 'stretch',
+              justifyContent: 'flex-start',
+              padding: 0,
+              listStyle: 'none',
+            }}
           >
             {todoList.map(e => (
               <TodoItem item={e} key={e.id} deleteTodo={this.deleteTodo} />

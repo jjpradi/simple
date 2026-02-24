@@ -6,6 +6,7 @@ import './index.css'
 function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState(null)
   const navigate = useNavigate()
 
   const onChangeUsername = event => setUsername(event.target.value)
@@ -24,6 +25,7 @@ function Login() {
 
     try {
       const response = await fetch(url, options)
+      console.log(response)
 
       if (response.ok) {
         const data = await response.json()
@@ -37,6 +39,7 @@ function Login() {
       }
     } catch (e) {
       console.error(e)
+      setError(e.message)
       alert('Network error')
     }
   }
@@ -67,6 +70,7 @@ function Login() {
             </div>
             <button type="submit">Login</button>
           </form>
+          <p>{error}</p>
         </div>
         <Link to="/register">
           Don&apos;t have an account? Register

@@ -1,5 +1,7 @@
-(/* Login page styles */)
-.login-container {
+(
+
+  /* Login page styles */
+) .login-container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -81,7 +83,7 @@ button[type='submit']:hover {
   transform: translateY(-1px);
 }
 
-.login-container > a {
+.login-container>a {
   display: block;
   text-align: center;
   margin-top: 12px;
@@ -90,7 +92,7 @@ button[type='submit']:hover {
   font-size: 0.95rem;
 }
 
-.login-container > a button {
+.login-container>a button {
   margin-left: 8px;
   padding: 6px 10px;
   border-radius: 6px;
@@ -152,7 +154,7 @@ button[type='submit']:hover {
     margin-bottom: 18px;
   }
 
-  .login-container > a {
+  .login-container>a {
     margin-top: 18px;
   }
 }
