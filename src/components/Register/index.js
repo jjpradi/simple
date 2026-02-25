@@ -5,24 +5,32 @@ import './index.css'
 const Register = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState(null)
   const navigate = useNavigate()
 
   const handleSubmit = async event => {
     event.preventDefault()
     const userDetails = {username, password}
-    const url = 'https://todoapplication-j07a.onrender.com/register'
+    const url = `https://todoapplication-j07a.onrender.com/register`
     const options = {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(userDetails),
     }
-
     const response = await fetch(url, options)
+    console.log(response)
+    let text = await response.text()
+
     if (response.ok) {
+      const data = JSON.parse(text)
+
+      setError(data.message)
+
       navigate('/login')
     } else {
-      // keep simple for now
-      console.error('Registration failed')
+      // Only show specific backend messages
+
+      setError(text)
     }
   }
 
@@ -53,6 +61,7 @@ const Register = () => {
               />
             </div>
             <button type="submit">Register</button>
+            <p className="error">{error}</p>
           </form>
         </div>
         <div style={{textAlign: 'center', marginTop: 12}}>

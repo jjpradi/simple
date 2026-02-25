@@ -1,169 +1,169 @@
 .tasklists-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 32px 16px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 32px 16px;
 }
 
 .lists-bar {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 24px;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
 }
 
 .lists-bar button {
-    background: #f3f4f6;
-    border: none;
-    border-radius: 8px;
-    padding: 8px 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.2s;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
 .lists-bar button.selected {
-    background: #2563eb;
-    color: #fff;
+  background: #2563eb;
+  color: #fff;
 }
 
 .add-list-form {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 16px;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
 }
 
 .add-list-form input {
-    border-radius: 6px;
-    border: 1px solid #cbd5e1;
-    padding: 8px;
-    font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  padding: 8px;
+  font-size: 1rem;
 }
 
 .add-list-form button {
-    background: #2563eb;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 8px 16px;
-    font-weight: 600;
-    cursor: pointer;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .tasks-section {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(31, 41, 55, 0.08);
-    padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(31, 41, 55, 0.08);
+  padding: 24px;
 }
 
 .add-task-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
 }
 
 .add-task-form input,
 .add-task-form select {
-    border-radius: 6px;
-    border: 1px solid #cbd5e1;
-    padding: 8px;
-    font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  padding: 8px;
+  font-size: 1rem;
 }
 
 .add-task-form button {
-    background: #10b981;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 8px 16px;
-    font-weight: 600;
-    cursor: pointer;
+  background: #10b981;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .tasks-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .task-card {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    background: #f9fafb;
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 12px;
-    box-shadow: 0 2px 8px rgba(31, 41, 55, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(31, 41, 55, 0.04);
 }
 
 .task-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .task-header .star {
-    color: gold;
-    font-size: 1.2rem;
-    cursor: pointer;
+  color: gold;
+  font-size: 1.2rem;
+  cursor: pointer;
 }
 
 .task-header .star.inactive {
-    color: #cbd5e1;
+  color: #cbd5e1;
 }
 
 .task-header .delete {
-    color: #ef4444;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-left: auto;
+  color: #ef4444;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: auto;
 }
 
 .task-details {
-    font-size: 0.95rem;
-    color: #475569;
+  font-size: 0.95rem;
+  color: #475569;
 }
 
 .steps-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .add-step-form {
-    display: flex;
-    gap: 6px;
-    margin-top: 6px;
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
 }
 
 .add-step-form input {
-    border-radius: 6px;
-    border: 1px solid #cbd5e1;
-    padding: 6px;
-    font-size: 0.95rem;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  padding: 6px;
+  font-size: 0.95rem;
 }
 
 .add-step-form button {
-    background: #2563eb;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 6px 12px;
-    font-weight: 500;
-    cursor: pointer;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 @media (max-width: 600px) {
-    .tasklists-container {
-        padding: 12px 4px;
-    }
+  .tasklists-container {
+    padding: 12px 4px;
+  }
 
-    .tasks-section {
-        padding: 12px;
-    }
+  .tasks-section {
+    padding: 12px;
+  }
 
-    .task-card {
-        padding: 8px;
-    }
+  .task-card {
+    padding: 8px;
+  }
 }

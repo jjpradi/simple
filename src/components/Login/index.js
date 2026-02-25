@@ -15,32 +15,27 @@ function Login() {
   const handleSubmit = async event => {
     event.preventDefault()
     const userDetails = {username, password}
-    const API = process.env.REACT_APP_API_URL || 'http://localhost:5000'
     const url = `https://todoapplication-j07a.onrender.com/login`
     const options = {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(userDetails),
     }
+    const response = await fetch(url, options)
+    console.log(response)
+    let text = await response.text()
 
-    try {
-      const response = await fetch(url, options)
-      console.log(response)
+    if (response.ok) {
+      const data = JSON.parse(text)
+      const token = data.jwtToken || data.jwt_token || data.jwt
+      Cookies.set('jwt_token', token, {expires: 30})
+      setError(data.message || 'Login successful')
 
-      if (response.ok) {
-        const data = await response.json()
-        const token = data.jwtToken || data.jwt_token || data.jwt
-        Cookies.set('jwt_token', token, {expires: 30})
+      navigate('/')
+    } else {
+      // Only show specific backend messages
 
-        navigate('/')
-      } else {
-        console.log('Login failed')
-        alert('Login failed')
-      }
-    } catch (e) {
-      console.error(e)
-      setError(e.message)
-      alert('Network error')
+      setError(text)
     }
   }
 
@@ -69,8 +64,10 @@ function Login() {
               />
             </div>
             <button type="submit">Login</button>
+            <p style={{color: 'red'}} className="error">
+              {error}
+            </p>
           </form>
-          <p>{error}</p>
         </div>
         <Link to="/register">
           Don&apos;t have an account? Register
