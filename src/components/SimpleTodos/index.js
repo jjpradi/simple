@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-
+import axios from 'axios'
 import {Navigate, Link} from 'react-router-dom'
 import './index.css'
 import TodoItem from '../TodoItem'
@@ -49,6 +49,9 @@ class SimpleTodos extends Component {
     priority: 'HIGH',
     status: 'IN PROGRESS',
     redirectToLogin: false,
+    aiAnalysis: '',
+    aiLoading: false,
+    aiError: '',
   }
 
   componentDidMount() {
@@ -93,45 +96,44 @@ class SimpleTodos extends Component {
   }
 
   addTodo = async () => {
-    const {searchInput, todoList} = this.state
-
+    const {searchInput, todoList, priority, status} = this.state
+    // Add todo as before
     const options = {
       method: 'POST',
-
       headers: {'Content-Type': 'application/json'},
-
       body: JSON.stringify({
         todo: searchInput,
-        priority: this.state.priority,
-        status: this.state.status,
+        priority,
+        status,
         id: todoList.length + 1,
         due_date: new Date().toISOString(),
       }),
     }
-
-    const res = await fetch(
-      'https://todoapplication-j07a.onrender.com/todos',
-      options,
-    )
-    if (res.ok === false) {
-      console.log(res.errorMsg)
-    }
-    const countOfList = todoList.length
-
-    const t = searchInput.slice(searchInput.length - 1)
-
-    console.log(t)
+    await fetch('http://localhost:5000/todos', options)
     const newTodo = {
-      id: countOfList + 1,
+      id: todoList.length + 1,
       todo: searchInput,
-      priority: this.state.priority,
-      status: this.state.status,
+      priority,
+      status,
       due_date: new Date().toISOString(),
     }
-
     this.setState(prevState => ({
       todoList: [...prevState.todoList, newTodo],
+      aiLoading: true,
+      aiError: '',
+      aiAnalysis: '',
     }))
+    // Call AI analysis
+    try {
+      const response = await axios.post(
+        'http://localhost:5000/api/ai/analyze',
+        {task: searchInput},
+      )
+      console.log(response.data)
+      this.setState({aiAnalysis: response.data.analysis, aiLoading: false})
+    } catch (err) {
+      this.setState({aiError: 'AI analysis failed', aiLoading: false})
+    }
   }
 
   deleteTodo = id => {
@@ -156,9 +158,7 @@ class SimpleTodos extends Component {
     if (redirectToLogin) {
       return <Navigate to="/login" />
     }
-    const {searchInput} = this.state
-
-    const {todoList} = this.state
+    const {searchInput, todoList, aiAnalysis, aiLoading, aiError} = this.state
     return (
       <div className="bg" style={{minHeight: '100vh'}}>
         <div className="add-card  filter-card">
@@ -185,6 +185,25 @@ class SimpleTodos extends Component {
             <button type="button" onClick={this.addTodo}>
               Add
             </button>
+          </div>
+          {/* AI Analysis Result */}
+          <div style={{margin: '15px', minHeight: '60px'}}>
+            {aiLoading && <span>Analyzing task with AI...</span>}
+            {aiError && <span style={{color: 'red'}}>{aiError}</span>}
+            {aiAnalysis && (
+              <div>
+                <h4>AI Analysis:</h4>
+                <pre
+                  style={{
+                    background: '#f5f5f5',
+                    padding: '10px',
+                    borderRadius: '6px',
+                  }}
+                >
+                  {aiAnalysis}
+                </pre>
+              </div>
+            )}
           </div>
 
           <div className="filter-card" style={{margin: '15px'}}>

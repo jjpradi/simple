@@ -13,6 +13,7 @@ function Login() {
   const onChangePassword = event => setPassword(event.target.value)
 
   const handleSubmit = async event => {
+    console.log(event)
     event.preventDefault()
     const userDetails = {username, password}
     const url = `https://todoapplication-j07a.onrender.com/login`
@@ -21,21 +22,29 @@ function Login() {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(userDetails),
     }
-    const response = await fetch(url, options)
-    console.log(response)
-    let text = await response.text()
+    console.log(url, options)
 
-    if (response.ok) {
-      const data = JSON.parse(text)
-      const token = data.jwtToken || data.jwt_token || data.jwt
-      Cookies.set('jwt_token', token, {expires: 30})
-      setError(data.message || 'Login successful')
+    try {
+      const response = await fetch(url, options)
+      console.log(response)
+      let text = await response.text()
 
-      navigate('/')
-    } else {
-      // Only show specific backend messages
+      if (response.ok) {
+        const data = JSON.parse(text)
+        const token = data.jwtToken || data.jwt_token || data.jwt
+        Cookies.set('jwt_token', token, {expires: 30})
+        setError(data.message || 'Login successful')
 
-      setError(text)
+        navigate('/')
+      } else {
+        // Only show specific backend messages
+
+        setError(text)
+      }
+    } catch (error) {
+      console.log('network error')
+      console.error('Error during login:', error)
+      setError('An error occurred during login. Please try again later.')
     }
   }
 
