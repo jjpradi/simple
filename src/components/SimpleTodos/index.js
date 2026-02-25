@@ -130,8 +130,11 @@ class SimpleTodos extends Component {
         {task: searchInput},
       )
       console.log(response.data)
-      this.setState({aiAnalysis: response.data.analysis, aiLoading: false})
+
+      this.setState({aiAnalysis: response.data.summary, aiLoading: false})
     } catch (err) {
+      console.log(err)
+
       this.setState({aiError: 'AI analysis failed', aiLoading: false})
     }
   }
@@ -190,9 +193,10 @@ class SimpleTodos extends Component {
           <div style={{margin: '15px', minHeight: '60px'}}>
             {aiLoading && <span>Analyzing task with AI...</span>}
             {aiError && <span style={{color: 'red'}}>{aiError}</span>}
-            {aiAnalysis && (
+            {aiLoading === false && (
               <div>
                 <h4>AI Analysis:</h4>
+
                 <pre
                   style={{
                     background: '#f5f5f5',
