@@ -116,7 +116,9 @@ function AppContent({
   const isAuthRoute =
     location.pathname === '/login' || location.pathname === '/register'
   return (
-    <div style={{minHeight: '100vh', width: '100vw', overflowX: 'hidden'}}>
+    <div
+      style={{minHeight: '100vh', top: 0, width: '100vw', overflowX: 'hidden'}}
+    >
       {!isAuthRoute && (
         <header
           style={{

@@ -39,6 +39,32 @@ const Sidebar = ({lists, selectedList, onSelectList, onAddList}) => {
           ⭐ Important (Planned)
         </button>
       </div>
+      <div style={{marginBottom: '1rem'}}>
+        <button
+          className={
+            selectedList === 'COMPLETED' ? 'sidebar-list-selected' : ''
+          }
+          style={{
+            width: '100%',
+            background: '#ff9800',
+            color: 'white',
+            fontWeight: 'bold',
+            border: 'none',
+            borderRadius: 6,
+            padding: '0.5rem 0',
+            marginBottom: 4,
+            cursor: 'pointer',
+            boxShadow:
+              selectedList === 'COMPLETED'
+                ? '0 2px 8px rgba(255,152,0,0.15)'
+                : 'none',
+            transition: 'box-shadow 0.2s',
+          }}
+          onClick={() => onSelectList('COMPLETED')}
+        >
+          Completed
+        </button>
+      </div>
       <ul className="sidebar-list">
         {lists.map(list => (
           <li key={list}>

@@ -109,7 +109,7 @@ class SimpleTodos extends Component {
         due_date: new Date().toISOString(),
       }),
     }
-    await fetch('http://localhost:5000/todos', options)
+    await fetch('https://todoapplication-j07a.onrender.com/todos', options)
     const newTodo = {
       id: todoList.length + 1,
       todo: searchInput,
@@ -130,8 +130,11 @@ class SimpleTodos extends Component {
         {task: searchInput},
       )
       console.log(response.data)
-
-      this.setState({aiAnalysis: response.data.summary, aiLoading: false})
+      console.log('AI analysis result:', response.data)
+      this.setState({
+        aiAnalysis: response.data.improved_version,
+        aiLoading: false,
+      })
     } catch (err) {
       console.log(err)
 
@@ -164,7 +167,10 @@ class SimpleTodos extends Component {
     const {searchInput, todoList, aiAnalysis, aiLoading, aiError} = this.state
     return (
       <div className="bg" style={{minHeight: '100vh'}}>
-        <div className="add-card  filter-card">
+        <div
+          style={{position: 'sticky', top: 0, zIndex: 1}}
+          className="add-card  filter-card"
+        >
           <div className="add-card">
             <div className="new-todo">
               <input value={searchInput} onChange={this.onSearch} type="text" />
@@ -194,8 +200,8 @@ class SimpleTodos extends Component {
             {aiLoading && <span>Analyzing task with AI...</span>}
             {aiError && <span style={{color: 'red'}}>{aiError}</span>}
             {aiLoading === false && (
-              <div>
-                <h4>AI Analysis:</h4>
+              <div style={{margin: '17px'}}>
+                <h4>AI Suggestion:</h4>
 
                 <pre
                   style={{
