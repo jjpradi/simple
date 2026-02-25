@@ -49,12 +49,12 @@
   font-size: 0.9rem;
   color: #475569;
 }
-.error{
+.error {
   color: #ef4444;
   font-size: 0.9rem;
   margin-top: 8px;
   text-align: center;
-  }
+}
 
 .input-container input {
   padding: 10px 12px;

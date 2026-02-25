@@ -91,12 +91,12 @@ button[type='submit']:hover {
   text-decoration: none;
   font-size: 0.95rem;
 }
-.error{
+.error {
   color: #ef4444;
   font-size: 0.9rem;
   margin-top: 8px;
   text-align: center;
-  } 
+}
 
 .login-container > a button {
   margin-left: 8px;
