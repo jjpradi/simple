@@ -9,7 +9,7 @@
 ### Live Demo
 
  
-🔗 https://simple-aqywdf92o-jjpradis-projects.vercel.app/ 
+🔗 https://simple-three-theta.vercel.app/ 
 
 
 ## 📂 GitHub Repository
