@@ -53,13 +53,18 @@ npm start
 
 <br/>
 <div style="text-align: center;">
-    <img src="[https://assets.ccbp.in/frontend/content/react-js/simple-todos-component-structure.png](https://i.ibb.co/LdDBw7fT/Screenshot-2026-02-25-235313.png)" alt="simple todos component structure" style="max-width:100%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12)">
+    <img src="https://i.ibb.co/LdDBw7fT/Screenshot-2026-02-25-235313.png" alt="simple todos component structure" style="max-width:100%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12)">
  
 </div>
 
 
 <div style="text-align: center;">
-    <img src="[https://assets.ccbp.in/frontend/content/react-js/simple-todos-component-structure.png](https://i.ibb.co/LdDBw7fT/Screenshot-2026-02-25-235313.png)" alt="simple todos component structure" style="max-width:100%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12)">
+    <img src="https://i.ibb.co/s9hVP3jW/Screenshot-2026-02-27-064523.png" alt="simple todos component structure" style="max-width:100%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12)">
+ 
+</div>
+
+<div style="text-align: center;">
+    <img src="https://i.ibb.co/G1KLnys/Screenshot-2026-02-27-064500.png" alt="simple todos component structure" style="max-width:100%;box-shadow:0 2.8px 2.2px rgba(0, 0, 0, 0.12)">
  
 </div>
 <br/>
