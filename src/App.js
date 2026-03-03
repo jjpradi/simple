@@ -12,7 +12,9 @@ import {useState, useEffect} from 'react'
 function App() {
   const [lists, setLists] = useState([])
   const [selectedList, setSelectedList] = useState('WORK')
+
   // Header background image state
+
   const bgImages = [
     {
       name: 'Three Dots',
@@ -31,8 +33,10 @@ function App() {
     },
     {
       name: 'Abstract 1',
-      url: 'url("/bg/abstract1.jpg")',
+      url:
+        'url("https://images.pexels.com/photos/378442/pexels-photo-378442.jpeg?cs=srgb&dl=dawn-nature-sky-378442.jpg&fm=jpg")',
     },
+
     {
       name: 'Abstract 2',
       url: 'url("/bg/abstract2.jpg")',
@@ -113,11 +117,14 @@ function AppContent({
   bgImages,
 }) {
   const location = useLocation()
+
   const isAuthRoute =
     location.pathname === '/login' || location.pathname === '/register'
+
   return (
     <div
-      style={{minHeight: '100vh', top: 0, width: '100vw', overflowX: 'hidden'}}
+      className="app-container"
+      style={{minHeight: '100vh', width: '100vw', overflowX: 'hidden'}}
     >
       {!isAuthRoute && (
         <header
@@ -136,6 +143,7 @@ function AppContent({
             position: 'sticky',
             top: 0,
             zIndex: 100,
+            marginTop: '0px',
             backgroundImage: headerBg,
             backgroundRepeat: headerBg === 'none' ? undefined : 'no-repeat',
             backgroundPosition:

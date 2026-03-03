@@ -52,6 +52,13 @@
   flex-direction: column;
   align-items: center;
 }
+.loader-spinner{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .todo-list {
   display: flex;

@@ -41,6 +41,7 @@
 .btn {
   align-self: self-start;
   margin-left: 33px;
+width: 3vw;
 }
 p {
   color: aquamarine;

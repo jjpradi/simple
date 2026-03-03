@@ -11,7 +11,31 @@ class TodoItem extends Component {
     isChecked: false,
     isFavourite: false,
   }
+
+  componentDidMount() {
+    this.getImportant()
+  }
+
+  getImportant = async () => {}
+
   toggleFavourite = () => {
+    const options = {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({is_important: !this.state.isFavourite}),
+    }
+
+    fetch(
+      `https://todoapplication-j07a.onrender.com/todos/${this.props.item.id}`,
+      options,
+    )
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        this.setState(prev => ({isFavourite: !prev.isFavourite}))
+      })
+      .catch(err => console.log(err))
+
     this.setState(prev => ({isFavourite: !prev.isFavourite}))
   }
 
@@ -55,22 +79,12 @@ class TodoItem extends Component {
           is_completed: event.target.checked,
         }),
       }
-      const res = await fetch(
-        `https://todoapplication-j07a.onrender.com/todos/${this.props.item.id}`,
-        oprions,
-      )
-      console.log(res)
     } else {
       const oprions = {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({is_completed: event.target.checked}),
       }
-      const res = await fetch(
-        `https://todoapplication-j07a.onrender.com/todos/${this.props.item.id}`,
-        oprions,
-      )
-      console.log(res)
     }
   }
 
@@ -129,6 +143,7 @@ class TodoItem extends Component {
                 checked={isChecked}
                 style={{marginRight: 8}}
               />
+
               <label
                 className={isChecked ? 'checked' : null}
                 style={{minWidth: 0, flex: 1, marginRight: 8}}

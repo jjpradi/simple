@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 import axios from 'axios'
 import {Navigate, Link} from 'react-router-dom'
 import './index.css'
+import {TailSpin} from 'react-loader-spinner'
 import TodoItem from '../TodoItem'
 const priorityList = ['HIGH', 'MEDIUM', 'LOW']
 const statusList = ['TO DO', 'IN PROGRESS', 'DONE']
@@ -52,6 +53,7 @@ class SimpleTodos extends Component {
     aiAnalysis: '',
     aiLoading: false,
     aiError: '',
+    isLoading: true,
   }
 
   componentDidMount() {
@@ -63,8 +65,13 @@ class SimpleTodos extends Component {
     console.log(`fetching from ${url}/todos`)
     const res = await fetch('https://todoapplication-j07a.onrender.com/todos')
     console.log(res)
+
     const data = await res.json()
+    if (res.ok) {
+      this.setState({isLoading: false})
+    }
     console.log(data)
+
     this.setState({todoList: data})
   }
 
@@ -84,6 +91,7 @@ class SimpleTodos extends Component {
     console.log(filter)
     this.setState({todoList: filter})
   }
+
   onStatusFilter = value => {
     const {todoList} = this.state
     const filter = todoList.filter(e => e.status === value)
@@ -100,12 +108,18 @@ class SimpleTodos extends Component {
     // Add todo as before
     const options = {
       method: 'POST',
+
       headers: {'Content-Type': 'application/json'},
+
       body: JSON.stringify({
         todo: searchInput,
+
         priority,
+
         status,
+
         id: todoList.length + 1,
+
         due_date: new Date().toISOString(),
       }),
     }
@@ -160,7 +174,7 @@ class SimpleTodos extends Component {
 
   render() {
     const {listCardBg} = this.props
-    const {redirectToLogin} = this.state
+    const {redirectToLogin, isLoading} = this.state
     if (redirectToLogin) {
       return <Navigate to="/login" />
     }
@@ -301,8 +315,19 @@ class SimpleTodos extends Component {
               listStyle: 'none',
             }}
           >
+            {isLoading && (
+              <div className="loader-spinner">
+                {' '}
+                <TailSpin color="#000000" />
+              </div>
+            )}
             {todoList.map(e => (
-              <TodoItem item={e} key={e.id} deleteTodo={this.deleteTodo} />
+              <TodoItem
+                setImportant={this.setImportant}
+                item={e}
+                key={e.id}
+                deleteTodo={this.deleteTodo}
+              />
             ))}
           </ul>
         </div>

@@ -77,14 +77,6 @@ const Sidebar = ({lists, selectedList, onSelectList, onAddList}) => {
           </li>
         ))}
       </ul>
-      <div className="sidebar-add-list">
-        <input
-          value={newListName}
-          onChange={e => setNewListName(e.target.value)}
-          placeholder="Add new list"
-        />
-        <button onClick={handleAdd}>+</button>
-      </div>
     </aside>
   )
 }
