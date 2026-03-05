@@ -101,6 +101,7 @@ class SimpleTodos extends Component {
     console.log(todoList)
     this.setState({todoList: filter})
   }
+
   onStatusChange = value => {
     console.log(value)
     this.setState({status: value})
@@ -190,6 +191,9 @@ class SimpleTodos extends Component {
       return <Navigate to="/login" />
     }
     const {searchInput, todoList, aiAnalysis, aiLoading, aiError} = this.state
+    console.log(todoList)
+
+    console.log('newTodoList')
     return (
       <div className="bg" style={{minHeight: '100vh'}}>
         <div

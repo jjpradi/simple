@@ -58,34 +58,7 @@ function App() {
   const [menuOpen, setMenuOpen] = React.useState(false)
 
   // Fetch categories from backend and keep in sync
-  useEffect(() => {
-    const fetchCategories = async () => {
-      const res = await fetch('https://todoapplication-j07a.onrender.com/todos')
-      const data = await res.json()
-      const cats = Array.from(
-        new Set(data.map(todo => todo.category || 'WORK')),
-      )
-      setLists(cats)
-      if (!cats.includes(selectedList)) setSelectedList(cats[0] || 'WORK')
-    }
-    fetchCategories()
-  }, [selectedList])
 
-  const handleAddList = async name => {
-    await fetch('https://todoapplication-j07a.onrender.com/todos', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        id: Date.now(),
-        todo: 'New List',
-        priority: 'LOW',
-        status: 'TO DO',
-        category: name,
-        dueDate: '',
-      }),
-    })
-    setSelectedList(name)
-  }
   const handleSelectList = name => setSelectedList(name)
 
   return (
@@ -94,7 +67,6 @@ function App() {
         lists={lists}
         selectedList={selectedList}
         handleSelectList={handleSelectList}
-        handleAddList={handleAddList}
         headerBg={headerBg}
         setHeaderBg={setHeaderBg}
         menuOpen={menuOpen}
@@ -136,10 +108,15 @@ function AppContent({
             color: 'white',
 
             padding: '1rem',
+
             fontSize: '1.25rem',
+
             fontWeight: 'bold',
+
             letterSpacing: '1px',
+
             boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
