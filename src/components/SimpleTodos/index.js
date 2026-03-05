@@ -46,6 +46,7 @@ const initialTodosList = [
 class SimpleTodos extends Component {
   state = {
     todoList: [],
+    totalList: [],
     searchInput: '',
     priority: 'HIGH',
     status: 'IN PROGRESS',
@@ -72,7 +73,7 @@ class SimpleTodos extends Component {
     }
     console.log(data)
 
-    this.setState({todoList: data})
+    this.setState({todoList: data, totalList: data})
   }
 
   onSearch = event => {
@@ -85,17 +86,19 @@ class SimpleTodos extends Component {
     this.setState({priority: value})
   }
 
-  onPriorityFilter = value => {
-    const {todoList} = this.state
-    const filter = todoList.filter(e => e.priority === value)
+  onPriorityFilter = async value => {
+    const {todoList, totalList} = this.state
+    const filter = totalList.filter(e => e.priority === value)
     console.log(filter)
     this.setState({todoList: filter})
   }
 
   onStatusFilter = value => {
-    const {todoList} = this.state
-    const filter = todoList.filter(e => e.status === value)
+    const {todoList, totalList} = this.state
+
+    const filter = totalList.filter(e => e.status === value)
     console.log(filter)
+    console.log(todoList)
     this.setState({todoList: filter})
   }
   onStatusChange = value => {
@@ -158,13 +161,21 @@ class SimpleTodos extends Component {
 
   deleteTodo = id => {
     const {todoList} = this.state
+
     const filter = todoList.filter(e => e.id !== id)
+
     console.log(filter)
 
     console.log(id)
 
     this.setState({
       todoList: filter,
+
+      aiAnalysis: '',
+
+      aiError: '',
+
+      aiLoading: false,
     })
   }
   onLogout = () => {
@@ -182,7 +193,7 @@ class SimpleTodos extends Component {
     return (
       <div className="bg" style={{minHeight: '100vh'}}>
         <div
-          style={{position: 'sticky', top: 0, zIndex: 1}}
+          style={{position: 'sticky', top: 0, zIndex: 1, width: '30vw'}}
           className="add-card  filter-card"
         >
           <div className="add-card">

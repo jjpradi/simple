@@ -5,7 +5,7 @@ import TaskLists from './components/TaskLists'
 import Login from './components/Login'
 import Register from './components/Register'
 import ProtectedRoute from './components/ProtectedRoute'
-
+import './App.css'
 import Sidebar from './components/Sidebar'
 import {useState, useEffect} from 'react'
 
@@ -130,8 +130,11 @@ function AppContent({
         <header
           style={{
             width: '100%',
+
             background: '#1976d2',
+
             color: 'white',
+
             padding: '1rem',
             fontSize: '1.25rem',
             fontWeight: 'bold',
@@ -151,6 +154,7 @@ function AppContent({
             backgroundSize: headerBg === 'none' ? undefined : '60px 20px',
             transition: 'background-image 0.3s',
           }}
+          className="app-header"
         >
           <span>Simple To Do</span>
           <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>

@@ -36,7 +36,7 @@ const Sidebar = ({lists, selectedList, onSelectList, onAddList}) => {
           }}
           onClick={() => onSelectList('IMPORTANT')}
         >
-          ⭐ Important (Planned)
+          ⭐ Important
         </button>
       </div>
       <div style={{marginBottom: '1rem'}}>
