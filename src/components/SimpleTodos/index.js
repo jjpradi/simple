@@ -127,8 +127,7 @@ class SimpleTodos extends Component {
         due_date: new Date().toISOString(),
       }),
     }
-    await fetch('https://todoapplication-j07a.onrender.com/todos', options)
-    
+
     const newTodo = {
       id: todoList.length + 1,
       todo: searchInput,
@@ -149,13 +148,15 @@ class SimpleTodos extends Component {
         'http://localhost:5000/api/ai/analyze',
         {task: searchInput},
       )
+
       console.log(response.data)
       console.log('AI analysis result:', response.data)
+
+      console.log(response.data)
       this.setState({
-        aiAnalysis: response.data.improved_version,
+        aiAnalysis: response.data.reply,
         aiLoading: false,
       })
-
     } catch (err) {
       console.log(err)
 
@@ -187,16 +188,11 @@ class SimpleTodos extends Component {
     this.setState({redirectToLogin: true})
   }
 
-
-
-
-
   render() {
-
     const {listCardBg} = this.props
-    
+
     const {redirectToLogin, isLoading} = this.state
-    
+
     if (redirectToLogin) {
       return <Navigate to="/login" />
     }
@@ -235,11 +231,13 @@ class SimpleTodos extends Component {
             </button>
           </div>
           {/* AI Analysis Result */}
-          <div style={{margin: '15px', minHeight: '60px'}}>
+          <div style={{margin: '15px', width: '7vw', minHeight: '60px'}}>
             {aiLoading && <span>Analyzing task with AI...</span>}
+
             {aiError && <span style={{color: 'red'}}>{aiError}</span>}
+
             {aiLoading === false && (
-              <div style={{margin: '17px'}}>
+              <div style={{width: '25vw', margin: '17px'}}>
                 <h4>AI Suggestion:</h4>
 
                 <pre
@@ -247,6 +245,7 @@ class SimpleTodos extends Component {
                     background: '#f5f5f5',
                     padding: '10px',
                     borderRadius: '6px',
+                    width: '25vw',
                   }}
                 >
                   {aiAnalysis}
