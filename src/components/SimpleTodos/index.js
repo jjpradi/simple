@@ -51,7 +51,7 @@ class SimpleTodos extends Component {
     priority: 'HIGH',
     status: 'IN PROGRESS',
     redirectToLogin: false,
-    aiAnalysis: '',
+    aiAnalysis: [],
     aiLoading: false,
     aiError: '',
     isLoading: true,
@@ -128,6 +128,7 @@ class SimpleTodos extends Component {
       }),
     }
     await fetch('https://todoapplication-j07a.onrender.com/todos', options)
+    
     const newTodo = {
       id: todoList.length + 1,
       todo: searchInput,
@@ -135,6 +136,7 @@ class SimpleTodos extends Component {
       status,
       due_date: new Date().toISOString(),
     }
+
     this.setState(prevState => ({
       todoList: [...prevState.todoList, newTodo],
       aiLoading: true,
@@ -153,6 +155,7 @@ class SimpleTodos extends Component {
         aiAnalysis: response.data.improved_version,
         aiLoading: false,
       })
+
     } catch (err) {
       console.log(err)
 
@@ -184,9 +187,16 @@ class SimpleTodos extends Component {
     this.setState({redirectToLogin: true})
   }
 
+
+
+
+
   render() {
+
     const {listCardBg} = this.props
+    
     const {redirectToLogin, isLoading} = this.state
+    
     if (redirectToLogin) {
       return <Navigate to="/login" />
     }

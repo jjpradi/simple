@@ -74,7 +74,12 @@ function App() {
         bgImages={bgImages}
       />
     </BrowserRouter>
+
+
+
   )
+
+
 }
 
 function AppContent({
